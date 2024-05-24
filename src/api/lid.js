@@ -44,15 +44,18 @@ const lidSchema = new mongoose.Schema({
     },
     sub2: {
         type: String,
-        required: true,
         trim: true
     },
     free: {
         type: String,
         required: true,
         trim: true
+    },
+    about: {
+        type: String,
+        required: true,
+        trim: true
     }
-    
 })
 
 const Lid = mongoose.model('Lid', lidSchema);
@@ -82,7 +85,8 @@ router.post('/', async (req, res) => {
         parentsNumber: req.body.parentsNumber,
         sub1: req.body.sub1,
         sub2: req.body.sub2,
-        free: req.body.free
+        free: req.body.free,
+        about: req.body.about
     });
     const result = await lid.save();
     res.send(result);
@@ -115,4 +119,5 @@ router.put('/:id', async (req, res) => {
     console.log("Lid-Put");
 });
 
+module.exports.lid = Lid;
 module.exports.router = router;
